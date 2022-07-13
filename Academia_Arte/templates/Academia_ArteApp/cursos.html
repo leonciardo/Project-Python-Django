@@ -1,0 +1,38 @@
+{% extends 'Academia_ArteApp/base.html' %}
+
+{% block content %}
+       
+        <!-- Page Content-->
+        <div class="container px-4 px-lg-5">
+            <!-- Heading Row-->
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="images\images\woman-serious-paint-stained-painting-picture.jpg" alt="..." /></div>
+                <div class="col-lg-5">
+                    <h1 class="font-weight-light">Cursos de PintaManos</h1>
+                    <p>Anotate en nuestro cursos para empezar a hacer tu obra maestra de arte</p>
+                </div>
+            </div>
+            
+            <!-- Content Row-->
+
+            
+            <div class="row gx-4 gx-lg-5">
+                {% for curso in cursos %}
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="col-lg-12"><img class="card-img rounded mb-4 mb-lg-0" src="{{curso.imagen_curso.url}}" alt="..." /></div>
+                        <div class="card-body">
+                            <h2 class="card-title">{{curso.nombre_curso}}</h2>
+                            <p class="card-text">Profesor: {{curso.profesor_curso}}</p>
+                            <p class="card-text">{{curso.descripcion_curso}}</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Detail' curso.id %}">¡Inscribite!</a></div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        </div>
+       
+
+
+{% endblock %}

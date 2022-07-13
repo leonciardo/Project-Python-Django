@@ -1,0 +1,114 @@
+{% extends 'Academia_ArteApp/base.html'%}
+
+{% block content %}
+{% load static %}
+
+
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header-->
+<header class="bg-dark py-5" style="background: url(https://lh3.googleusercontent.com/pw/AM-JKLVruOm3YwW0ZtsIDihasliTv-LkLdW46d7GO6bl1SN0XsxlllXdaTA4hzwtlN0sGTWcz7DQE9z9pTL8TG9Y8sQrV1RieT8o-1i3V8D7-o5kIcT6UXl81h747zLQrdOajm4USbDlljtJ_VdEujvrX3om=w1293-h667-no?authuser=0) no-repeat center center / cover;">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-start">
+            <div class="col-lg-6">
+                <div class="text-start my-9">
+                    <h1 class="display-4 fst-italic">PintaManos, donde tus ideas son Arte</h1>
+                <p class="lead my-3">En PintaManos podras encontrar variados cursos, donde desarrollaras tus dotes
+                    creativos y donde el limite, es tu propia inspiracion.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-start">
+                        <p class="lead mb-0"><a href="{% url 'pinta_manos' %}" class="fw-bold">Continue leyendo...</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="b-example-divider"></div>
+        <!----------------------Bloque de noticias---------------------->
+        <!-------------------------Noticia 1---------------------------->
+        {% for n in noticias %}
+        <div class="row">
+            <div class="col">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-center">
+                    <div class="col p-4 d-flex flex-column position-center text-center">
+                        <strong class="d-inline-block mb-2 text-primary">Noticias del momento</strong>
+                        <h3 class="mb-0"> {{n.titulo_noticia}} </h3>
+                        <p class="card-text mb-auto"> {{n.noticia_noticia}} .</p>
+                        <a href="#" class="btn btn-outline-primary">Leer mas</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="{{n.imagen_noticia.url}}" width="550" height="250">
+                    </div>
+                </div>
+            </div>            
+        </div>
+        {% endfor %}
+
+    </main>
+</body>
+
+</html>
+{% endblock %}

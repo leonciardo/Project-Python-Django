@@ -1,0 +1,70 @@
+{% extends "Academia_ArteApp/base.html" %}
+
+{% block content %}
+<!-- Contact section-->
+<section class="bg-light py-5">
+    <div class="container px-5 my-5 px-5">
+        <div class="text-center mb-5">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+            <h2 class="fw-bolder">Ponte en contacto</h2>
+            <p class="lead mb-0">Nos encanta escucharte</p>
+        </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+
+                <form id="contactForm" method="POST">{% csrf_token %}
+
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="nombre_contacto" id="name" type="text"
+                            placeholder="Escriba su nombre..." required>
+                        <label for="name">Nombre completo</label>
+                        <div class="invalid-feedback">Debe indicar su nombre y apellido.</div>
+                    </div>
+
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="email_contacto" id="email" type="email"
+                            placeholder="nombre@ejemplo.com">
+                        <label for="email">Correo electronico</label>
+                        <div class="invalid-feedback" required>Debe indicar un eMail.</div>
+                        <div class="invalid-feedback">El email no es valido.</div>
+                    </div>
+
+                    <!-- Phone number input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="tel_contacto" id="phone" type="tel" placeholder="095 123 456"
+                            required>
+                        <label for="phone">Telefono</label>
+                        <div class="invalid-feedback">Debe agregar un telefono.</div>
+                    </div>
+
+                    <!-- Asunto input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="asunto_contacto" id="affair" type="text"
+                            placeholder="Ingrese un asunto" required>
+                        <label for="phone">Asunto</label>
+                        <div class="invalid-feedback">Debe agregar un asunto.</div>
+                    </div>
+
+                    <!-- Message input-->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" name="mensaje_contacto" id="message" type="text"
+                            placeholder="Escriba su mensaje aqui..." style="height: 10rem" required></textarea>
+                        <label for="message">Mensaje</label>
+                        <div class="invalid-feedback">Debe ingresar un mensaje.
+                        </div>
+                    </div>
+
+                    <!-- Submit Button-->
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
