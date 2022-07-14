@@ -202,8 +202,14 @@ def VNoticias (request):
     return render (request, "Academia_ArteApp/noticias.html",{"noticias":noticias})
 
 class CursoDetalle(DetailView):
+    
     model = Curso
     template_name = "Academia_ArteApp/curso_detalle.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(CursoDetalle, self).get_context_data(**kwargs)
+        context['todos_cursos'] = Curso.objects.all()
+        return context
 
 def VPintaManos(request):
 
