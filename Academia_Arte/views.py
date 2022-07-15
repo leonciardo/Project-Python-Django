@@ -262,6 +262,10 @@ class NoticiasList(ListView):
                 url = "images/images/generic_user.png"
         return render(request, "Academia_ArteApp/lista_noticias.html", {"url": url})
 
+class NoticiaDetalle(DetailView):
+    model = Noticias
+    template_name = "Academia_ArteApp/noticia_detalle.html"
+
 def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
     noticia.delete()

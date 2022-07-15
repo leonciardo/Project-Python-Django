@@ -33,6 +33,8 @@ urlpatterns = [
     path('crear_noticia', VCrearNoticia, name='crear_noticia'),
     path('eliminar_noticia/<int:id>', VEliminarNoticia, name="eliminar_noticia"),
     path('lista_noticias', NoticiasList.as_view(), name='lista_noticias'),
+    path(r'noticias^(?P<pk>\d+)$', NoticiaDetalle.as_view(), name ='Detalle'),
+    
 
 
 ]
