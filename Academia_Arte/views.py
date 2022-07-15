@@ -210,6 +210,15 @@ class CursoDetalle(DetailView):
         context = super(CursoDetalle, self).get_context_data(**kwargs)
         context['todos_cursos'] = Curso.objects.all()
         return context
+    
+    def Imagen(request):
+        if request.user.is_authenticated:
+            try:
+                avatar = Avatar.objects.get(usuario=request.user)
+                url = avatar.imagen.url
+            except:
+                url = "images/images/generic_user.png"
+        return render(request, "Academia_ArteApp/curso_detalle.html", {"url": url})
 
 def VPintaManos(request):
 
@@ -273,14 +282,17 @@ def VEliminarNoticia(request,id):
     noticia.delete()
     return redirect("inicio")
 
-# def VInscripcionCurso(request,id):
+@login_required
+def VInscripcionCurso(request):
 
-#     if request.user.is_authenticated:
-#         usuario = User.objects.filter(id=id)
-
-#         if form.is_valid():
-
-#     else:
-#         return redirect('login')
-    
-#     return render(request,'inscripcion_curso.html')
+    #if request.user.is_authenticated:
+       # usuario = User.objects.filter(id=id)
+        #if form.is_valid():
+            #pass
+   #else:
+        #return redirect('login')
+    form = InscripcionFormulario(request.POST or None)
+    if request.method == "POST":
+        form = InscripcionFormulario(request.POST)
+        
+    return render(request,'Academia_ArteApp/inscripcion_curso.html',{"form":form})

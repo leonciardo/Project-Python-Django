@@ -29,10 +29,11 @@ urlpatterns = [
     path('profesores', VProfesores, name='profesores'),
     path('acerca_de', VAcerca_de, name='acerca_de'),
     path('noticias', VNoticias, name ='noticias'),
-    path(r'^(?P<pk>\d+)$', CursoDetalle.as_view(), name ='Detail'),
+    path(r'^(?P<pk>\d+)$', CursoDetalle.as_view(), name ='Detail'), #cursos/<pk>
     path('crear_noticia', VCrearNoticia, name='crear_noticia'),
     path('eliminar_noticia/<int:id>', VEliminarNoticia, name="eliminar_noticia"),
     path('lista_noticias', NoticiasList.as_view(), name='lista_noticias'),
+    path('inscripcion_curso', VInscripcionCurso, name="inscripcion_curso"),
 
 
 ]

@@ -26,4 +26,12 @@ class AvatarFormulario(forms.Form):
     class Meta:
         model = Avatar
         fields = ["imagen"]
+        
+        
+class InscripcionFormulario(forms.Form):
+    
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido") 
+    email = forms.EmailField(label="Email")
+    curso = forms.ChoiceField(widget=forms.Select, choices=opcion_cursos)
 

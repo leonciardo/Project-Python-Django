@@ -17,10 +17,10 @@
                     <span>${{curso.precio_curso}}</span>
                 </div>
                 <p class="lead">{{curso.descripcion_detalle_curso}}</p>
-                <div class="d-flex">
+                <div class="d-flex" >
                     <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Inscribirse
+                        <i class="bi-cart-fill me-1"><a href="{% url 'inscripcion_curso' %}"></i> 
+                        Inscribirse</a>
                     </button>
                 </div>
             </div>
