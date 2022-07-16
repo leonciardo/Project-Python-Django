@@ -22,6 +22,7 @@ urlpatterns = [
     path('register', VRegister, name='register'),
     path('logout', VLogout, name='logout'),
     path('perfil', VPerfil, name='perfil'),
+    path('cambiar_contra', VCambiarContra, name='cambiar_contra'),
     path('pinta_manos', VPintaManos, name='pinta_manos'),
     path('contacto', VContacto, name='contacto'),
     path('cursos', VCursos, name='cursos'),
@@ -29,10 +30,12 @@ urlpatterns = [
     path('profesores', VProfesores, name='profesores'),
     path('acerca_de', VAcerca_de, name='acerca_de'),
     path('noticias', VNoticias, name ='noticias'),
-    path(r'^(?P<pk>\d+)$', CursoDetalle.as_view(), name ='Detail'),
     path('crear_noticia', VCrearNoticia, name='crear_noticia'),
     path('eliminar_noticia/<int:id>', VEliminarNoticia, name="eliminar_noticia"),
     path('lista_noticias', NoticiasList.as_view(), name='lista_noticias'),
+    path(r'curso/^(?P<pk>\d+)$', CursoDetalle.as_view(), name ='Detail'),
+    path(r'profesor/^(?P<pk>\d+)$', ProfesorDetalle.as_view(), name='profesor'),
+
 
 
 ]

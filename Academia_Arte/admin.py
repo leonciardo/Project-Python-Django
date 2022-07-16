@@ -61,9 +61,24 @@ class CursoAdmin(admin.ModelAdmin):
         "descripcion_curso",
     )
 
+
+class ProfesoresAdmin(admin.ModelAdmin):
+    list_display = (
+        "nombre_profesor",
+        "apellido_profesor",
+        "curso_profesor",
+
+    )
+    search_fields = (
+        "nombre_profesor",
+        "apellido_profesor",
+        "curso_profesor",
+    )
+
 admin.site.register(Noticias, NoticiasAdmin)
 admin.site.register(Avatar)
 admin.site.register(Contacto, ContactoAdmin)
 admin.site.register(Staff, StaffAdmin)
 admin.site.register(Curso, CursoAdmin)
 admin.site.register(TipoUsuario)
+admin.site.register(Profesores,ProfesoresAdmin)

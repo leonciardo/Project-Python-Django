@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import login, logout, authenticate
 from .forms import *
 from .models import *
@@ -9,7 +9,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import update_session_auth_hash
 
+from django.contrib import messages
 
 # Create your views here.
 
@@ -18,14 +20,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 #Tambien se creo la carga de imagen del usuario Logueado
 def VInicio(request):
     noticias = Noticias.objects.all()[:2]
-
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/inicio.html", {"noticias": noticias, "url": url})
 
     return render(request, "Academia_ArteApp/inicio.html",{"noticias":noticias})
 
@@ -45,10 +39,12 @@ def VLogin(request):
                 return redirect("inicio")
 
             else:
-                return render(request, "Academia_ArteApp/login.html", {"mensaje": "Error"})
+                messages.error(request, "Usuario o contraseña incorrectos")
+                return render(request, "Academia_ArteApp/login.html",{"form":form})
 
         else:
-            return render(request, "Academia_ArteApp/login.html", {"mensaje": "Error"})
+            messages.error(request, "Usuario o contraseña incorrectos")
+            return render(request, "Academia_ArteApp/login.html", {"form": form})
 
     form = AuthenticationForm()
     return render(request, "Academia_ArteApp/login.html", {"form":form})
@@ -60,10 +56,14 @@ def VRegister(request):
 
         if form.is_valid():
             form.save()
+            user = User.objects.get(username=form.cleaned_data["username"])
+            avatar= Avatar(usuario=user, imagen="images/images/generic_user.png")
+            avatar.save()
 
             return redirect("login")
         
         return render(request, "Academia_ArteApp/register.html",{"form":form})
+
     form = UserCreationForm()
     return render(request, "Academia_ArteApp/register.html",{"form":form})
 
@@ -76,18 +76,10 @@ def VLogout(request):
 @login_required
 def VPerfil(request):
 
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-
     user = request.user
 
     if request.method == "POST":
         form = UserEditForm(request.POST)
-        formimagen = AvatarFormulario(request.POST, request.FILES)
 
         if form.is_valid():
             info = form.cleaned_data
@@ -96,28 +88,48 @@ def VPerfil(request):
             user.last_name = info["last_name"]
             user.save()
 
-            avatar = Avatar(usuario=user, imagen=request.FILES["imagen"])
+            avatar = Avatar.objects.get(usuario=user)
+            avatar.imagen = info=["imagen"]
             avatar.save()
 
             return redirect("inicio")
 
     else:
         form = UserEditForm(
-            initial={"email": user.email, "first_name": user.first_name, "last_name": user.last_name})       
-        formimagen = AvatarFormulario()
+            initial={
+                "email": user.email, 
+                "first_name": user.first_name, 
+                "last_name": user.last_name,
+                "imagen": user.avatar.imagen
+                }) 
 
-    return render(request, "Academia_ArteApp/edit_perfil.html",{"form":form,"url":url,"formimagen":formimagen})
+
+    return render(request, "Academia_ArteApp/edit_perfil.html",{"form":form})
+
+@login_required
+def VCambiarContra(request):
+
+    user = request.user
+
+    if request.method == "POST":
+        form = PasswordChangeForm(user, request.POST)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+
+            messages.success(request, ("Tu contraseña fue cambiada con exito!"))
+
+            return redirect("inicio")
+
+    else:
+        form = PasswordChangeForm(user)
+
+    return render(request, "Academia_ArteApp/cambiar_contra.html",{"form":form})
+
+
 
 def VContacto(request):
-
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/contacto.html", {"url": url})
-
 
     if request.method == 'POST':
 
@@ -137,28 +149,11 @@ def VContacto(request):
 
 def VAlumnos (request):
 
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        
-        return render(request, "Academia_ArteApp/alumnos.html", {"url": url})
-
     return render (request, "Academia_ArteApp/alumnos.html")
 
 def VProfesores (request):
 
-    profe = TipoUsuario.objects.filter(tipousuario="Profesor")
-
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/profesores.html", {"profe": profe,"url": url})
+    profe = Profesores.objects.all()
 
     return render(request, "Academia_ArteApp/profesores.html",{"profe":profe})
 
@@ -166,38 +161,15 @@ def VCursos (request):
 
     cursos = Curso.objects.all()
 
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/cursos.html", {"cursos": cursos, "url": url})
-
     return render (request, "Academia_ArteApp/cursos.html", {"cursos":cursos})
 
 def VAcerca_de (request):
     staff = Staff.objects.all()
 
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/acerca_de.html", {"staff": staff, "url": url})
     return render(request, "Academia_ArteApp/acerca_de.html", {"staff":staff})  
 
 def VNoticias (request):
     noticias = Noticias.objects.all()
-
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/noticias.html", {"noticias": noticias, "url": url})
 
     return render (request, "Academia_ArteApp/noticias.html",{"noticias":noticias})
 
@@ -205,28 +177,21 @@ class CursoDetalle(DetailView):
     model = Curso
     template_name = "Academia_ArteApp/curso_detalle.html"
 
-def VPintaManos(request):
+    def get_context_data(self, **kwargs):
+        context = super(CursoDetalle, self).get_context_data(**kwargs)
+        context["todos_cursos"] = Curso.objects.all()
+        return context
 
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/pinta_manos.html", {"url": url})
+class ProfesorDetalle(DetailView):
+    model = Profesores
+    template_name = "Academia_ArteApp/profesor_detalle.html"
+
+def VPintaManos(request):
 
     return render(request, "Academia_ArteApp/pinta_manos.html")
 
 @staff_member_required
 def VCrearNoticia(request):
-
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "images/images/generic_user.png"
-
 
     if request.method=="POST":
 
@@ -247,34 +212,13 @@ def VCrearNoticia(request):
         noticia_form = ()
         noticia = ()
 
-    return render(request, "Academia_ArteApp/crear_noticia.html",{"url":url})
+    return render(request, "Academia_ArteApp/crear_noticia.html",{})
 
 class NoticiasList(ListView):
     model = Noticias
     template_name = "Academia_ArteApp/lista_noticias.html"
 
-    def Imagen(request):
-        if request.user.is_authenticated:
-            try:
-                avatar = Avatar.objects.get(usuario=request.user)
-                url = avatar.imagen.url
-            except:
-                url = "images/images/generic_user.png"
-        return render(request, "Academia_ArteApp/lista_noticias.html", {"url": url})
-
 def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
     noticia.delete()
     return redirect("inicio")
-
-# def VInscripcionCurso(request,id):
-
-#     if request.user.is_authenticated:
-#         usuario = User.objects.filter(id=id)
-
-#         if form.is_valid():
-
-#     else:
-#         return redirect('login')
-    
-#     return render(request,'inscripcion_curso.html')
