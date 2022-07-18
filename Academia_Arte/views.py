@@ -255,7 +255,7 @@ class NoticiasList(ListView):
 
 class NoticiaDetalle(DetailView):
     model = Noticias
-    template_name = "Academia_ArteApp/noticia_detalle.html"
+    template_name = "Academia_Arte/noticia_detalle.html"
 
 def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
