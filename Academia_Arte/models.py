@@ -42,7 +42,7 @@ class TipoUsuario(models.Model):
 class Profesores(models.Model):
     nombre_profesor = models.CharField(max_length=20)
     apellido_profesor = models.CharField(max_length=20)
-    curso_profesor = models.CharField(max_length=40, choices=cursos)
+    curso_profesor = models.CharField(max_length=40, choices=opcion_cursos)
     imagen_profesor = models.ImageField(upload_to="images/")
     descripcion_profesor = models.CharField(max_length=200, blank=True, null=True)
     biografia_profesor = models.CharField(

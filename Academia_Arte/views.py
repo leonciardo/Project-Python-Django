@@ -278,6 +278,7 @@ def VInscripcionCurso(request):
         form = InscripcionFormulario(request.POST)
         
     return render(request,'Academia_Arte/inscripcion_curso.html',{"form":form})
+
 def VEditarNoticia(request, id):
     noticia = Noticias.objects.get(id=id)
 
@@ -296,3 +297,6 @@ def VEditarNoticia(request, id):
 
     return render(request, "Academia_Arte/editar_noticia.html",{"noticia":noticia})
 
+class ProfesorDetalle(DetailView):
+    model = Profesores
+    template_name = "Academia_Arte/profesor_detalle.html"
