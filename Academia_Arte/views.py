@@ -127,8 +127,6 @@ def VCambiarContra(request):
 
     return render(request, "Academia_ArteApp/cambiar_contra.html",{"form":form})
 
-
-
 def VContacto(request):
 
     if request.method == 'POST':
@@ -147,6 +145,7 @@ def VContacto(request):
 
     return render(request, "Academia_ArteApp/contacto.html")
 
+@staff_member_required
 def VAlumnos (request):
 
     return render (request, "Academia_ArteApp/alumnos.html")
@@ -222,3 +221,22 @@ def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
     noticia.delete()
     return redirect("inicio")
+
+def VEditarNoticia(request, id):
+    noticia = Noticias.objects.get(id=id)
+
+    if  request.method == "POST":
+        noticia_form = request.POST
+        imagen_form = request.FILES
+
+        noticias = Noticias(
+            titulo_noticia=noticia_form["titulo_noticia"],
+            descripcion_noticia=noticia_form["descripcion_noticia"],
+            noticia_noticia=noticia_form["noticia_noticia"],
+            imagen_noticia=imagen_form["imagen_noticia"],
+        )
+        noticias.save()
+        return redirect("inicio")
+
+    return render(request, "Academia_ArteApp/editar_noticia.html",{"noticia":noticia})
+
