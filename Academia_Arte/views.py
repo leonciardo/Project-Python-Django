@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login, logout, authenticate
-from matplotlib import image
 from .forms import *
 from .models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
