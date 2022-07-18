@@ -39,6 +39,8 @@ urlpatterns = [
     path('eliminar_noticia/<int:id>', VEliminarNoticia, name="eliminar_noticia"),
     path('lista_noticias', NoticiasList.as_view(), name='lista_noticias'),
     path('inscripcion_curso', VInscripcionCurso, name="inscripcion_curso"),
+    path(r'noticias^(?P<pk>\d+)$', NoticiaDetalle.as_view(), name ='Detalle'),
+    
 
 
 ]

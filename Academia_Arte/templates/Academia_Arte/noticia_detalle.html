@@ -1,0 +1,23 @@
+{% extends 'Academia_ArteApp/base.html' %}
+
+{% block content %}
+
+
+
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+          <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{noticias.imagen_noticia.url}}" alt="..." /></div>
+          <div class="col-md-6">
+              <h1 class="display-5 fw-bolder">{{noticias.titulo_noticia}}</h1>
+              <p class="lead">{{noticias.descripcion_noticia}}</p>
+              <p class="lead">{{noticias.noticia_noticia}}</p>
+              <div class="d-flex">
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+{% endblock %}

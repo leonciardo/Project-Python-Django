@@ -125,7 +125,7 @@ body {
   <li>
 
     {% for n in noticias %}
-    <a href="#" class="card">
+    <a href="{% url 'Detalle' n.id %}" class="card">
       <img src="{{n.imagen_noticia.url}}" class="card__image" alt="" />
       <div class="card__overlay">
         <div class="card__header">
@@ -136,6 +136,7 @@ body {
           </div>
         </div>
         <p class="card__description">{{n.descripcion_noticia}}</p>
+        
       </div>
     </a>      
   </li>

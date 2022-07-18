@@ -253,6 +253,10 @@ class NoticiasList(ListView):
     template_name = "Academia_Arte/lista_noticias.html"
 
 
+class NoticiaDetalle(DetailView):
+    model = Noticias
+    template_name = "Academia_ArteApp/noticia_detalle.html"
+
 def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
     noticia.delete()
