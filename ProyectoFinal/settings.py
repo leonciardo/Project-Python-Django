@@ -58,8 +58,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            r'C:\Users\leonfio1515\Desktop\Proyecto Coder\ProyectoFinal\Academia_Arte\templates\Academia_ArteApp',
-            r'C:\Users\Samsung\Desktop\testeo\ProyectoFinal\Academia_Arte\templates\Academia_ArteApp',
+            r'C:\Users\leonfio1515\Desktop\Proyecto Coder\ProyectoFinal\Academia_Arte\templates\Academia_Arte',
+            r'C:\Users\Samsung\Desktop\testeo\ProyectoFinal\Academia_Arte\templates\Academia_Arte',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

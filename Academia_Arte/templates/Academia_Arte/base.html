@@ -138,7 +138,11 @@
                         <li><a href="{% url 'noticias' %}"class="nav-link px-2 text-white">Noticias</a></li>
                         <li><a href="{% url 'cursos' %}" class="nav-link px-2 text-white">Cursos</a></li>
                         <li><a href="{% url 'profesores' %}" class="nav-link px-2 text-white">Profesores</a></li>
+                        
+                        {% if user.is_staff %}
                         <li><a href="{% url 'alumnos' %}" class="nav-link px-2 text-white">Alumnos</a></li>
+                        {% endif %}
+
                         <li><a href="{% url 'contacto' %}" class="nav-link px-2 text-white">Contacto</a></li>
                         <li><a href="{% url 'acerca_de' %}" class="nav-link px-2 text-white">Acerca de...</a></li>
 

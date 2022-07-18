@@ -1,16 +1,14 @@
-{% extends "Academia_ArteApp/base.html" %}
+{% extends 'Academia_Arte/base.html'%}
 
 {% block content %}
-
+{% load static %}
 
 <!-- Contact section-->
 <section class="bg-light py-5">
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
-            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
-            <h2 class="fw-bolder">Ponte en contacto</h2>
-            <i class="bi bi-envelope"></i>
-            <p class="lead mb-0">Nos encanta escucharte</p>
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+            <h2 class="fw-bolder">Inscripcion a cursos</h2>
         </div>
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
@@ -21,8 +19,7 @@
                     <div class="form-floating mb-3">
                         <input class="form-control" name="nombre_contacto" id="name" type="text"
                             placeholder="Escriba su nombre..." required>
-                        <label for="name">Nombre completo</label>
-                        <div class="invalid-feedback">Debe indicar su nombre y apellido.</div>
+                        <label for="name">Nombre de usuario</label>
                     </div>
 
                     <!-- Email address input-->
@@ -61,7 +58,7 @@
 
                     <!-- Submit Button-->
                     <div class="d-grid">
-                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Enviar <i class="bi bi-chat-left-text"></i></button>
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Enviar</button>
                     </div>
                 </form>
             </div>

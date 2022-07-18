@@ -21,7 +21,7 @@ from django.contrib import messages
 def VInicio(request):
     noticias = Noticias.objects.all()[:2]
 
-    return render(request, "Academia_ArteApp/inicio.html",{"noticias":noticias})
+    return render(request, "Academia_Arte/inicio.html",{"noticias":noticias})
 
 #Se crea el formulario para el inicio de sesion.
 #En caso de no existir el usuario que intenta loguearse renderisa nuevamente la pagina. En caso de loguear sesion, lo redirecciona a Inicio
@@ -40,14 +40,14 @@ def VLogin(request):
 
             else:
                 messages.error(request, "Usuario o contraseña incorrectos")
-                return render(request, "Academia_ArteApp/login.html",{"form":form})
+                return render(request, "Academia_Arte/login.html",{"form":form})
 
         else:
             messages.error(request, "Usuario o contraseña incorrectos")
-            return render(request, "Academia_ArteApp/login.html", {"form": form})
+            return render(request, "Academia_Arte/login.html", {"form": form})
 
     form = AuthenticationForm()
-    return render(request, "Academia_ArteApp/login.html", {"form":form})
+    return render(request, "Academia_Arte/login.html", {"form":form})
 
 #Creamos formulario para registrar usuario, el cual luego de guardar, lo redirecciona a Login para que inicie sesion.
 def VRegister(request):
@@ -62,10 +62,10 @@ def VRegister(request):
 
             return redirect("login")
         
-        return render(request, "Academia_ArteApp/register.html",{"form":form})
+        return render(request, "Academia_Arte/register.html",{"form":form})
 
     form = UserCreationForm()
-    return render(request, "Academia_ArteApp/register.html",{"form":form})
+    return render(request, "Academia_Arte/register.html",{"form":form})
 
 def VLogout(request):
     logout(request)
@@ -104,7 +104,7 @@ def VPerfil(request):
                 }) 
 
 
-    return render(request, "Academia_ArteApp/edit_perfil.html",{"form":form})
+    return render(request, "Academia_Arte/edit_perfil.html",{"form":form})
 
 @login_required
 def VCambiarContra(request):
@@ -125,7 +125,7 @@ def VCambiarContra(request):
     else:
         form = PasswordChangeForm(user)
 
-    return render(request, "Academia_ArteApp/cambiar_contra.html",{"form":form})
+    return render(request, "Academia_Arte/cambiar_contra.html",{"form":form})
 
 def VContacto(request):
 
@@ -143,38 +143,38 @@ def VContacto(request):
         msj.save()
         return redirect("inicio")
 
-    return render(request, "Academia_ArteApp/contacto.html")
+    return render(request, "Academia_Arte/contacto.html")
 
 @staff_member_required
 def VAlumnos (request):
 
-    return render (request, "Academia_ArteApp/alumnos.html")
+    return render (request, "Academia_Arte/alumnos.html")
 
 def VProfesores (request):
 
     profe = Profesores.objects.all()
 
-    return render(request, "Academia_ArteApp/profesores.html",{"profe":profe})
+    return render(request, "Academia_Arte/profesores.html",{"profe":profe})
 
 def VCursos (request):
 
     cursos = Curso.objects.all()
 
-    return render (request, "Academia_ArteApp/cursos.html", {"cursos":cursos})
+    return render (request, "Academia_Arte/cursos.html", {"cursos":cursos})
 
 def VAcerca_de (request):
     staff = Staff.objects.all()
 
-    return render(request, "Academia_ArteApp/acerca_de.html", {"staff":staff})  
+    return render(request, "Academia_Arte/acerca_de.html", {"staff":staff})  
 
 def VNoticias (request):
     noticias = Noticias.objects.all()
 
-    return render (request, "Academia_ArteApp/noticias.html",{"noticias":noticias})
+    return render (request, "Academia_Arte/noticias.html",{"noticias":noticias})
 
 class CursoDetalle(DetailView):
     model = Curso
-    template_name = "Academia_ArteApp/curso_detalle.html"
+    template_name = "Academia_Arte/curso_detalle.html"
 
     def get_context_data(self, **kwargs):
         context = super(CursoDetalle, self).get_context_data(**kwargs)
@@ -183,11 +183,11 @@ class CursoDetalle(DetailView):
 
 class ProfesorDetalle(DetailView):
     model = Profesores
-    template_name = "Academia_ArteApp/profesor_detalle.html"
+    template_name = "Academia_Arte/profesor_detalle.html"
 
 def VPintaManos(request):
 
-    return render(request, "Academia_ArteApp/pinta_manos.html")
+    return render(request, "Academia_Arte/pinta_manos.html")
 
 @staff_member_required
 def VCrearNoticia(request):
@@ -211,11 +211,11 @@ def VCrearNoticia(request):
         noticia_form = ()
         noticia = ()
 
-    return render(request, "Academia_ArteApp/crear_noticia.html",{})
+    return render(request, "Academia_Arte/crear_noticia.html",{})
 
 class NoticiasList(ListView):
     model = Noticias
-    template_name = "Academia_ArteApp/lista_noticias.html"
+    template_name = "Academia_Arte/lista_noticias.html"
 
 def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
@@ -238,5 +238,5 @@ def VEditarNoticia(request, id):
         noticias.save()
         return redirect("inicio")
 
-    return render(request, "Academia_ArteApp/editar_noticia.html",{"noticia":noticia})
+    return render(request, "Academia_Arte/editar_noticia.html",{"noticia":noticia})
 
