@@ -1,10 +1,14 @@
-{% extends 'Academia_ArteApp/base.html' %}
+{% extends 'Academia_Arte/base.html' %}
 
 
 {% block content %}
 
 <form action="" method="POST">
     {% csrf_token %}
+
+    {% for message in messages %}
+        <div class="alert alert-{{message.type}}">{{message.text}}</div>
+    {% endfor %}
 
     <div style="width: 25%; margin: auto;">
 

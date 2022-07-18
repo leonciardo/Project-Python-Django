@@ -1,7 +1,11 @@
-{% extends 'Academia_ArteApp/base.html' %}
+{% extends 'Academia_Arte/base.html' %}
 
 {% block content %}
-       
+       {% if user.is_staff %}
+        <div class="col text-center">
+            <a type="button" class="btn btn-info" href="{% url 'lista_cursos' %}">Ingresar al administrador de cursos</a>
+        </div>
+       {% endif%}
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->

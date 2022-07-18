@@ -1,11 +1,11 @@
-{% extends 'Academia_ArteApp/base.html' %}
+{% extends 'Academia_Arte/base.html' %}
 
 
 {% block content %}
 
 <section class="bg-light py-5">
     <div class="container px-5">
-        <center><h1 class="justify center">Editar Perfil</h1></center>
+        <h1 class="text-center">Editar Perfil</h1>
         <br>
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -15,6 +15,7 @@
                 {{form.as_p}}
                 {{formimagen.as_p}}
 
+                <a  class="btn btn-secondary" href="{% url 'cambiar_contra' %}">Cambiar Contraseña</a>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </form>
