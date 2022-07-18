@@ -32,10 +32,18 @@ class Curso(models.Model):
     descripcion_curso = models.CharField(max_length=300)
     descripcion_detalle_curso = models.CharField(max_length=600,default="Detalle")
     profesor_curso = models.CharField(max_length=30, default="profesor")
-    precio_curso = models.IntegerField(max_length=5, default="0")
+    precio_curso = models.IntegerField(default="0")
     #inscriptos
 
 class TipoUsuario(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     tipousuario = models.CharField(max_length=150, choices=tipo_usuario)
-    
+
+class Profesores(models.Model):
+    nombre_profesor = models.CharField(max_length=20)
+    apellido_profesor = models.CharField(max_length=20)
+    curso_profesor = models.CharField(max_length=40, choices=cursos)
+    imagen_profesor = models.ImageField(upload_to="images/")
+    descripcion_profesor = models.CharField(max_length=200, blank=True, null=True)
+    biografia_profesor = models.CharField(
+        max_length=2000, blank=True, null=True)

@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
+
 <div class="containter py-4">
     <div class="row">
         <div class="clo-md-4">
@@ -22,8 +23,9 @@
                         <tr>
                             <td>{{n.titulo_noticia}}</td>
                             <td>{{n.descripcion_noticia}}</td>
-                            <td><a href="editar_noticia/{{n.id}}" class="btn btn-block btn btn-outline-primary">Editar</a></td>
-                            <td><a href="eliminar_noticia/{{n.id}}" class="btn btn-block btn btn-outline-danger btnEliminacion">Eliminar</a></td>                            
+                            <td><a href="editar_noticia/{{n.id}}" class="btn btn-block btn btn-outline-primary"><i class="bi bi-pencil"></i></a></td>
+                            <td><a href="eliminar_noticia/{{n.id}}" class="btn btn-block btn btn-outline-danger btnEliminacion"><i class="bi bi-trash3"></i></a>
+                            </td>                            
                         </tr>
                         {% endfor %}
                     </tbody>

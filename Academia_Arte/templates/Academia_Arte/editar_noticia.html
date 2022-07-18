@@ -6,43 +6,41 @@
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
-            <h2 class="fw-bolder">Crea una nueva Noticia</h2>
+            <h2 class="fw-bolder">Editar una Noticia</h2>
         </div>
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
 
                 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
 
-                    <!-- Title input-->
+                    <input type="hidden" name="noticia_id" value="{{noticia.id}}">
+
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="titulo_noticia" type="text"
+                        <input class="form-control" value="{{noticia.titulo_noticia}}" name="titulo_noticia" type="text"
                             placeholder="Titulo de la noticia..." required>
                         <label for="name">Titulo de la noticia</label>
                         <div class="invalid-feedback">Debe indicar un titulo.</div>
                     </div>
 
-                    <!-- Description input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="descripcion_noticia" type="text"
+                        <input class="form-control" name="descripcion_noticia" value="{{noticia.descripcion_noticia}}" type="text"
                             placeholder="Alguna descripcion">
                         <label for="email">Descripcion de noticia</label>
                         <div class="invalid-feedback" required>Debe escribir una descripcion.</div>
                     </div>
 
-                    <!-- Imagen input-->
                     <div class="mb-3">
-                        <input class="form-control" name="imagen_noticia" type="file" required>
+                        <input class="form-control" value="{{noticia.imagen_noticia}}" name="imagen_noticia" type="file" required>
                         <div class="invalid-feedback">Debe agregar una imagen.</div>
                     </div>
 
-                    <!-- Message input-->
                     <div class="form-floating mb-3">
                         <textarea class="form-control" name="noticia_noticia" type="text"
-                            placeholder="Escriba una noticia..." style="height: 10rem" required></textarea>
+                            placeholder="Escriba una noticia..." style="height: 10rem" required>{{noticia.noticia_noticia}}</textarea>
                         <label for="message">Texto de la Noticia</label>
                         <div class="invalid-feedback">Debe escribir una noticia.
                         </div>
-                    </div>
+                    </div> 
 
                     <!-- Submit Button-->
                     <div class="d-grid">

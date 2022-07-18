@@ -23,6 +23,7 @@ urlpatterns = [
     path('logout', VLogout, name='logout'),
     path('cambiar_contra', VCambiarContra, name='cambiar_contra'),
     path('perfil', VPerfil, name='perfil'),
+    path('cambiar_contra', VCambiarContra, name='cambiar_contra'),
     path('pinta_manos', VPintaManos, name='pinta_manos'),
     path('contacto', VContacto, name='contacto'),
     path('cursos', VCursos, name='cursos'),
@@ -37,10 +38,12 @@ urlpatterns = [
     path(r'curso/^eliminar(?P<pk>\d+)$', CursoDetalle.as_view(), name ='eliminar_curso'),
     path('crear_noticia', VCrearNoticia, name='crear_noticia'),
     path('eliminar_noticia/<int:id>', VEliminarNoticia, name="eliminar_noticia"),
+    path('editar_noticia/<int:id>', VEditarNoticia, name="editar_noticia"),
     path('lista_noticias', NoticiasList.as_view(), name='lista_noticias'),
     path('inscripcion_curso', VInscripcionCurso, name="inscripcion_curso"),
     path(r'noticias^(?P<pk>\d+)$', NoticiaDetalle.as_view(), name ='Detalle'),
-    
+    path(r'profesor/^(?P<pk>\d+)$', ProfesorDetalle.as_view(), name='profesor'),
+
 
 
 ]

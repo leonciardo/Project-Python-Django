@@ -11,9 +11,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import update_session_auth_hash
 
 from django.contrib import messages
-
 
 # Create your views here.
 
@@ -65,6 +65,7 @@ def VRegister(request):
             return redirect("login")
         
         return render(request, "Academia_Arte/register.html",{"form":form})
+
     form = UserCreationForm()
     return render(request, "Academia_Arte/register.html",{"form":form})
 
@@ -145,13 +146,14 @@ def VContacto(request):
 
     return render(request, "Academia_Arte/contacto.html")
 
+@staff_member_required
 def VAlumnos (request):
 
     return render (request, "Academia_Arte/alumnos.html")
 
 def VProfesores (request):
 
-    profe = TipoUsuario.objects.filter(tipousuario="Profesor")
+    profe = Profesores.objects.all()
 
     return render(request, "Academia_Arte/profesores.html",{"profe":profe})
 
@@ -276,3 +278,21 @@ def VInscripcionCurso(request):
         form = InscripcionFormulario(request.POST)
         
     return render(request,'Academia_Arte/inscripcion_curso.html',{"form":form})
+def VEditarNoticia(request, id):
+    noticia = Noticias.objects.get(id=id)
+
+    if  request.method == "POST":
+        noticia_form = request.POST
+        imagen_form = request.FILES
+
+        noticias = Noticias(
+            titulo_noticia=noticia_form["titulo_noticia"],
+            descripcion_noticia=noticia_form["descripcion_noticia"],
+            noticia_noticia=noticia_form["noticia_noticia"],
+            imagen_noticia=imagen_form["imagen_noticia"],
+        )
+        noticias.save()
+        return redirect("inicio")
+
+    return render(request, "Academia_Arte/editar_noticia.html",{"noticia":noticia})
+
