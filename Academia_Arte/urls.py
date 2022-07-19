@@ -43,6 +43,12 @@ urlpatterns = [
     path('inscripcion_curso', VInscripcionCurso, name="inscripcion_curso"),
     path(r'noticias^(?P<pk>\d+)$', NoticiaDetalle.as_view(), name ='Detalle'),
     path(r'profesor/^(?P<pk>\d+)$', ProfesorDetalle.as_view(), name='profesor'),
+    #alumnos urls
+    path('estudiante/list', EstudiantesList.as_view(), name="estudiante_list"),
+    path(r'^(?P<pk>\d+)$', EstudianteDetail.as_view(), name="estudiante_detail"),
+    path(r'^nuevo$', EstudianteCreate.as_view(), name="estudiante_create"),
+    path(r'^editar/(?P<pk>\d+)$', EstudianteUpdate.as_view(), name="estudiante_update"),
+    path(r'^eliminar/(?P<pk>\d+)$', EstudianteDelete.as_view(), name="estudiante_delete"),
 
 
 

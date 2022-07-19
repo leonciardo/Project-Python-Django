@@ -75,6 +75,13 @@ class ProfesoresAdmin(admin.ModelAdmin):
         "curso_profesor",
     )
 
+class EstudianteAdmin(admin.ModelAdmin):
+
+    list_display = ('nombre_estudiante', 'apellido_estudiante', 'dni_estudiante', 'email_estudiante', 'curso_estudiante',)
+    search_fields = (
+        'nombre_estudiante', 'apellido_estudiante', 'dni_estudiante', 'email_estudiante', 'curso_estudiante',) 
+   
+
 admin.site.register(Noticias, NoticiasAdmin)
 admin.site.register(Avatar)
 admin.site.register(Contacto, ContactoAdmin)
@@ -82,3 +89,4 @@ admin.site.register(Staff, StaffAdmin)
 admin.site.register(Curso, CursoAdmin)
 admin.site.register(TipoUsuario)
 admin.site.register(Profesores,ProfesoresAdmin)
+admin.site.register(Estudiante,EstudianteAdmin)

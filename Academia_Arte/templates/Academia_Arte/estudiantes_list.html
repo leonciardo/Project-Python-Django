@@ -1,0 +1,40 @@
+{% extends "Academia_Arte/base.html" %}
+
+{% block content %}
+
+<br>
+<h1 class="col text-center" >Alumnos</h1>
+<table class="table">
+   <thead class="thead-dark">
+     <tr>
+       <th scope="col">Nombre</th>
+       <th scope="col">Apellido</th>
+       <th scope="col">DNI</th>
+       <th scope="col">Cursando:</th>
+       <th scope="col"></th>
+     </tr>
+   </thead>
+   <tbody><center>
+       {% for n in object_list %}
+           <tr>
+               <td>{{ n.nombre_estudiante }}</td>
+               <td>{{ n.apellido_estudiante }}</td>
+               <td>{{ n.dni_estudiante }}</td>
+               <td>{{ n.curso_estudiante }}</td>
+
+               <td><a type="button" class="btn btn-primary" href="{% url 'estudiante_detail' n.id %}">Detalle</a></td>
+               <td><a type="button" class="btn btn-primary" href="{% url 'estudiante_update' n.id %}">Editar</a></td>
+               <td><a type="button" class="btn btn-danger" href="{% url 'estudiante_delete' n.id %}">Eliminar</a></td>
+           </tr></center>
+       {% endfor %}
+   </tbody>
+</table>
+<br>
+
+{% endblock %}
+
+
+   
+
+
+

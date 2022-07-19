@@ -1,0 +1,19 @@
+{% extends "Academia_Arte/base.html" %}
+
+{% block content %}
+
+<html><body>
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title"> {{estudiante.nombre_estudiante}} {{estudiante.apellido_estudiante}}</h4>
+      <p class="card-text">Actualmente cursando: {{estudiante.curso_estudiante}}</p>
+      <p class="card-text">DNI: {{estudiante.dni_estudiante}}</p>
+      <p class="card-text">Email: {{estudiante.email_estudiante}}</p>
+      <a href="{% url 'estudiante_list' %}">Regresar a lista estudiantes</a>
+    </div>
+  </div>
+
+</body>
+</html>
+{% endblock %}
+
