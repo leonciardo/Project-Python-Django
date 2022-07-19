@@ -98,7 +98,8 @@
                         <strong class="d-inline-block mb-2 text-primary">Noticias del momento</strong>
                         <h3 class="mb-0"> {{n.titulo_noticia}} </h3>
                         <p class="card-text mb-auto"> {{n.noticia_noticia}} .</p>
-                        <a href="#" class="btn btn-outline-primary">Leer mas</a>
+                        
+                        <a href="{% url 'Detalle' n.id %}" class="btn btn-outline-primary">Leer mas</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                         <img src="{{n.imagen_noticia.url}}" width="550" height="250">

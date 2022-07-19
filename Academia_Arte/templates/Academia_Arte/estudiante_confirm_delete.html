@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+{% extends 'Academia_Arte/base.html' %}
+
+{% block content %}
+
+<br><br>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +13,10 @@
 <body>
     <form action="" method="post">
         {% csrf_token %}
-        ¿Está seguro que quiere eliminar al estudiante: {{ object.nombre_alumno}} {{ object.apellido_alumno }}?
+        ¿Está seguro que quiere eliminar al estudiante: {{ object.nombre_estudiante}} {{ object.apellido_estudiante }}?
         <input type="submit" value="Sí, Eliminar.">
     </form>
 </body>
 </html>
+<br><br>
+{% endblock %}
