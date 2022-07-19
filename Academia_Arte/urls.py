@@ -31,18 +31,27 @@ urlpatterns = [
     path('profesores', VProfesores, name='profesores'),
     path('acerca_de', VAcerca_de, name='acerca_de'),
     path('noticias', VNoticias, name ='noticias'),
-    path(r'curso/^(?P<pk>\d+)$', CursoDetalle.as_view(), name ='Detail'),#cursos/<pk>
+    #Cursos CRUD
+    path(r'curso/^(?P<pk>\d+)$', CursoDetalle.as_view(), name ='Detail'),
     path(r'curso/^nuevo$', CursoCreacion.as_view(), name ='nuevo_curso'),
     path('curso/list', CursoList.as_view(), name ='lista_cursos'),
-    path(r'curso/^editar/(?P<pk>\d+)$', CursoDetalle.as_view(), name ='editar_curso'),
-    path(r'curso/^eliminar(?P<pk>\d+)$', CursoDetalle.as_view(), name ='eliminar_curso'),
+    path(r'curso/^editar/(?P<pk>\d+)$', CursoUpdate.as_view(), name ='editar_curso'),
+    path(r'curso/^eliminar(?P<pk>\d+)$', CursoDelete.as_view(), name ='eliminar_curso'),
+    #Noticias CRUD
     path('crear_noticia', VCrearNoticia, name='crear_noticia'),
     path('eliminar_noticia/<int:id>', VEliminarNoticia, name="eliminar_noticia"),
     path('editar_noticia/<int:id>', VEditarNoticia, name="editar_noticia"),
     path('lista_noticias', NoticiasList.as_view(), name='lista_noticias'),
     path('inscripcion_curso', VInscripcionCurso, name="inscripcion_curso"),
     path(r'noticias^(?P<pk>\d+)$', NoticiaDetalle.as_view(), name ='Detalle'),
+    
     path(r'profesor/^(?P<pk>\d+)$', ProfesorDetalle.as_view(), name='profesor'),
+    #Alumnos CRUD
+    path('estudiantes/list', EstudiantesList.as_view(), name="estudiante_list"),
+    path(r'^(?P<pk>\d+)$', EstudianteDetail.as_view(), name="estudiante_detail"),
+    path(r'^nuevo$', EstudianteCreate.as_view(), name="estudiante_create"),
+    path(r'^editar/(?P<pk>\d+)$', EstudianteUpdate.as_view(), name="estudiante_update"),
+    path(r'^eliminar/(?P<pk>\d+)$', EstudianteDelete.as_view(), name="estudiante_delete"),
 
 
 

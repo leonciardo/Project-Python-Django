@@ -138,9 +138,8 @@
                         <li><a href="{% url 'noticias' %}"class="nav-link px-2 text-white">Noticias</a></li>
                         <li><a href="{% url 'cursos' %}" class="nav-link px-2 text-white">Cursos</a></li>
                         <li><a href="{% url 'profesores' %}" class="nav-link px-2 text-white">Profesores</a></li>
-                        
                         {% if user.is_staff %}
-                        <li><a href="{% url 'alumnos' %}" class="nav-link px-2 text-white">Alumnos</a></li>
+                        <li><a href="{% url 'estudiante_list' %}" class="nav-link px-2 text-white">Alumnos</a></li>
                         {% endif %}
 
                         <li><a href="{% url 'contacto' %}" class="nav-link px-2 text-white">Contacto</a></li>
@@ -202,17 +201,18 @@
             <p class="m-0 text-lefth text-white">Telefono: xxx xxx xxx</p>
         </div>
         <div class="container px-5">
-            <p class="m-0 text-lefth text-white">Responsables:
-                Federico Copertini
-                Leonardo Mesaglio
-                Leonardo Fiorentino
+            <center><p class="m-0 text-lefth text-white">Responsables:
+                <p><span class="badge badge-pill bg-primary">Federico Copertini</span>
+                <span class="badge badge-pill bg-primary">Leonardo Mesaglio</span>
+                <span class="badge badge-pill bg-primary">Leonardo Fiorentino</span></P>
+            </center>
             </p></div>
         <center><div class="container">    
-            {% comment %} AGREGAR LINKS DE REDES SOCIALES EN HREF ABAJO {% endcomment %}
-            <a href="#" class="fa fa-facebook"></a> 
-        <a href="#" class="fa fa-twitter"></a> 
-        <a href="#" class="fa fa-instagram"></a> 
-        <a href="#" class="fa fa-youtube"></a> 
+            {% comment %} links a pagina general reservado para pagina especifica de la academia {% endcomment %}
+            <a href="https://facebook.com" class="fa fa-facebook"></a> 
+        <a href="https://twitter.com" class="fa fa-twitter"></a> 
+        <a href="https://instagram.com" class="fa fa-instagram"></a> 
+        <a href="https://youtube.com" class="fa fa-youtube"></a> 
         </div></center>
 
     </footer>

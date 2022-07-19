@@ -150,6 +150,37 @@ def VAlumnos (request):
 
     return render (request, "Academia_Arte/alumnos.html")
 
+
+#creando vista CRUD ALUMNOS/ESTUDIANTES
+
+class EstudiantesList(ListView):
+
+    model = Estudiante
+    template_name = "Academia_Arte/estudiantes_list.html"
+
+class EstudianteDetail(DetailView):
+
+    model = Estudiante
+    template_name = "Academia_Arte/estudiante_detail.html"
+
+class EstudianteCreate(CreateView):
+
+    model = Estudiante
+    success_url = "/estudiantes_list"
+    fields = ["nombre", "apellido", "email"]
+
+class EstudianteUpdate(UpdateView):
+
+    model = Estudiante
+    success_url = "/estudiantes/list" # atenciooooooooon!!!! a la primer /
+    fields = ["nombre_estudiante", "apellido_estudiante", "email_estudiante", "dni_estudiante", "curso_estudiante"]
+
+class EstudianteDelete(DeleteView):
+
+    model = Estudiante
+    success_url = "/estudiantes_list" # atenciooooooooon!!!! a la primer /
+
+
 def VProfesores (request):
 
     profe = Profesores.objects.all()
@@ -193,7 +224,7 @@ class CursoDetalle(DetailView):
 class CursoCreacion(CreateView):
     
     model = Curso
-    success_url = "/Academia_Arte/cursos.html"
+    success_url = "/cursos"
     fields =[
         'nombre_curso',
         'descripcion_curso',
@@ -206,7 +237,7 @@ class CursoCreacion(CreateView):
 class CursoUpdate(UpdateView):
     
     model = Curso
-    success_url = "/Academia_Arte/cursos.html"
+    success_url = "/cursos"
     fields =[
         'nombre_curso',
         'descripcion_curso',
@@ -219,7 +250,7 @@ class CursoUpdate(UpdateView):
 class CursoDelete(DeleteView):
     
     model = Curso
-    success_url = "/Academia_Arte/cursos.html"
+    success_url = "/cursos"
     
 def VPintaManos(request):
 

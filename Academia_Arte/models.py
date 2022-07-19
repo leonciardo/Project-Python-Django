@@ -47,3 +47,12 @@ class Profesores(models.Model):
     descripcion_profesor = models.CharField(max_length=200, blank=True, null=True)
     biografia_profesor = models.CharField(
         max_length=2000, blank=True, null=True)
+
+class Estudiante(models.Model):
+    nombre_estudiante = models.CharField(max_length=40)
+    apellido_estudiante = models.CharField(max_length=30)
+    email_estudiante =  models.EmailField()
+    dni_estudiante = models.CharField(max_length=12)
+    curso_estudiante = models.CharField (max_length=20)
+    
+
