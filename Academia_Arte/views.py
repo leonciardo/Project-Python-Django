@@ -166,19 +166,19 @@ class EstudianteDetail(DetailView):
 class EstudianteCreate(CreateView):
 
     model = Estudiante
-    success_url = "Academia_Arte/estudiantes_list.html"
+    success_url = "/estudiantes_list"
     fields = ["nombre", "apellido", "email"]
 
 class EstudianteUpdate(UpdateView):
 
     model = Estudiante
-    success_url = "/Academia_Arte/estudiante/list.html" # atenciooooooooon!!!! a la primer /
+    success_url = "/estudiantes/list" # atenciooooooooon!!!! a la primer /
     fields = ["nombre_estudiante", "apellido_estudiante", "email_estudiante", "dni_estudiante", "curso_estudiante"]
 
 class EstudianteDelete(DeleteView):
 
     model = Estudiante
-    success_url = "/Academia_Arte/estudiante/list.html" # atenciooooooooon!!!! a la primer /
+    success_url = "/estudiantes_list" # atenciooooooooon!!!! a la primer /
 
 
 def VProfesores (request):
@@ -330,6 +330,3 @@ def VEditarNoticia(request, id):
 class ProfesorDetalle(DetailView):
     model = Profesores
     template_name = "Academia_Arte/profesor_detalle.html"
-
-
-
