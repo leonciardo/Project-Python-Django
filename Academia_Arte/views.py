@@ -224,7 +224,7 @@ class CursoDetalle(DetailView):
 class CursoCreacion(CreateView):
     
     model = Curso
-    success_url = "/Academia_Arte/cursos.html"
+    success_url = "/cursos"
     fields =[
         'nombre_curso',
         'descripcion_curso',
@@ -237,7 +237,7 @@ class CursoCreacion(CreateView):
 class CursoUpdate(UpdateView):
     
     model = Curso
-    success_url = "/Academia_Arte/cursos.html"
+    success_url = "/cursos"
     fields =[
         'nombre_curso',
         'descripcion_curso',
@@ -250,7 +250,7 @@ class CursoUpdate(UpdateView):
 class CursoDelete(DeleteView):
     
     model = Curso
-    success_url = "/Academia_Arte/cursos.html"
+    success_url = "/cursos"
     
 def VPintaManos(request):
 

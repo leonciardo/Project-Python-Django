@@ -4,7 +4,7 @@
 {% block content %}
 
     <form method="post">{% csrf_token %}
-        ¿Estás seguro que quieres eliminar el crusro "{{ object }}"
+        ¿Estás seguro que quieres eliminar el crusro "{{ object.nombre_curso }}"
         <input type="submit" value="Submit">
     </form>
 
