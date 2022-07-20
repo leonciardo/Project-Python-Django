@@ -172,7 +172,7 @@ class EstudianteCreate(CreateView):
 class EstudianteUpdate(UpdateView):
 
     model = Estudiante
-    success_url = "/estudiantes/list" # atenciooooooooon!!!! a la primer /
+    success_url = "/estudiantes_list" # atenciooooooooon!!!! a la primer /
     fields = ["nombre_estudiante", "apellido_estudiante", "email_estudiante", "dni_estudiante", "curso_estudiante"]
 
 class EstudianteDelete(DeleteView):
@@ -284,7 +284,6 @@ class NoticiasList(ListView):
     model = Noticias
     template_name = "Academia_Arte/lista_noticias.html"
 
-
 class NoticiaDetalle(DetailView):
     model = Noticias
     template_name = "Academia_Arte/noticia_detalle.html"
@@ -330,3 +329,16 @@ def VEditarNoticia(request, id):
 class ProfesorDetalle(DetailView):
     model = Profesores
     template_name = "Academia_Arte/profesor_detalle.html"
+
+#Class CONTACTO
+class ContactoList(ListView):
+    model = Contacto
+    template_name = "Academia_Arte/mensajes_contacto.html"
+
+class ContactoDelete(DeleteView):
+    model = Contacto
+    success_url = "/mensajes_contacto"
+
+class ContactoDetail(DetailView):
+    model = Contacto
+    template_name = "Academia_Arte/mensaje_contacto_detalle.html"

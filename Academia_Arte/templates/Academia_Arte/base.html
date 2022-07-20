@@ -139,7 +139,7 @@
                         <li><a href="{% url 'cursos' %}" class="nav-link px-2 text-white">Cursos</a></li>
                         <li><a href="{% url 'profesores' %}" class="nav-link px-2 text-white">Profesores</a></li>
                         {% if user.is_staff %}
-                        <li><a href="{% url 'estudiante_list' %}" class="nav-link px-2 text-white">Alumnos</a></li>
+                        <li><a href="{% url 'estudiantes_list' %}" class="nav-link px-2 text-white">Alumnos</a></li>
                         {% endif %}
 
                         <li><a href="{% url 'contacto' %}" class="nav-link px-2 text-white">Contacto</a></li>
@@ -160,6 +160,8 @@
                             {% if user.is_staff %}
                             <li><a class="dropdown-item" href="{% url 'crear_noticia' %}">Crear Noticias</a></li>
                             <li><a class="dropdown-item" href="{% url 'lista_noticias' %}">Editar Noticias</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mensajes_contacto' %}">Mensajes</a></li>
+
                             {% endif %}
                             
                             <li><hr class="dropdown-divider"></li>

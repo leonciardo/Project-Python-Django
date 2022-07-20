@@ -53,6 +53,6 @@ class Estudiante(models.Model):
     apellido_estudiante = models.CharField(max_length=30)
     email_estudiante =  models.EmailField()
     dni_estudiante = models.CharField(max_length=12)
-    curso_estudiante = models.CharField (max_length=20)
+    curso_estudiante = models.CharField(max_length=50, choices=opcion_cursos)
     
 

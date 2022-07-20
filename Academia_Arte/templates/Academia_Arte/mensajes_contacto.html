@@ -1,0 +1,37 @@
+{% extends "Academia_Arte/base.html" %}
+
+{% block content %}
+
+<br>
+<h1 class="col text-center">Mensajes recibidos</h1>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre Contacto</th>
+            <th scope="col">Email</th>
+            <th scope="col">Nº Tel</th>
+            <th scope="col">Asunto</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <center>
+            {% for mensaje in object_list %}
+            <tr>
+                <td>{{ mensaje.nombre_contacto }}</td>
+                <td>{{ mensaje.email_contacto }}</td>
+                <td>{{ mensaje.tel_contacto }}</td>
+                <td>{{ mensaje.asunto_contacto }}</td>
+
+                <td><a type="button" class="btn btn-block btn btn-outline-primary"
+                        href="{% url 'mensaje_detail' mensaje.id %}"><i class="bi bi-binoculars"></i></a></td>
+                <td><a type="button" class="btn btn-block btn btn-outline-danger btnEliminacion"
+                        href="{% url 'mensaje_eliminar' mensaje.id %}"><i class="bi bi-trash3"></i></a></td>
+            </tr>
+        </center>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+
+{% endblock %}

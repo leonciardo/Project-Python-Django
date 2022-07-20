@@ -3,10 +3,15 @@
 
 {% block content %}
 
+<center>
+<br>
     <form method="post" enctype="multipart/form-data" >
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit"  value="Guardar" />
+        <input type="submit"  value="Guardar" class="btn btn-primary">
+        <input type="reset" Value="Restaurar" class="btn btn-outline-danger">
+        <a href="{% url 'lista_cursos' %}" class="btn btn-outline-primary">Regresar <i class="bi bi-arrow-return-left"></i></a>
     </form>
 
+</center>
 {% endblock %}

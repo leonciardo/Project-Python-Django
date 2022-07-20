@@ -8,3 +8,5 @@ opcion_cursos = (
     ("Arte rupestre", "Arte rupestre"),
     ("Surrealismo", "Surrealismo"),
 )
+
+
