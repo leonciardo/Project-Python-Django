@@ -2,13 +2,21 @@
 
 
 {% block content %}
-
+<br>
+<center>
+<h5>Registro de usuario</h5>
+</center>
 <form action="" method="POST">
     {% csrf_token %}
 
     <div style="width: 25%; margin: auto;">
 
-        {{form.as_p}}
+        {% for field in form %}
+        <div class="mb-3">
+            <label for="{{field.id_for_label}}">{{field.html_name}}</label>
+            <input type="{{field.html_name}}" class="form-control" name="{{field.html_name}}">
+        </div>
+        {% endfor %}
 
         <button type="submit" class="btn btn-primary">Registrarse</button>
     </div>

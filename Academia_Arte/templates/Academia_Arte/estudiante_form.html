@@ -4,11 +4,24 @@
 
 <center>
     <br>
-    <title>Formulario Estudiante</title>
+    <h5>Editar datos de Estudiante</h5>
+    <br>
     <form action="" method="post">
         {% csrf_token %}
 
-        {{form.as_p}}
+        <!-- {{form.as_p}} -->
+
+        <label for="{{form.id_for_label}}">{{form.label}}</label>
+        <input type="{{form.value}}" value="{{form.value}}" class="form-control text-center" name="{{form.value}}">
+
+
+        {% for field in form %}
+        <div class="mb-3">
+            <label for="{{field.id_for_label}}">{{field.label}}</label>
+            <input type="{{field.value}}" value="{{field.value}}" class="form-control text-center" name="{{field.html_name}}">
+        </div>
+        {% endfor %}
+
 
         <button type="submit" class="btn btn-primary">Guardar Estudiante <i class="bi bi-upload"></i></button>
         <button type="reset" class="btn btn-dark">Eliminar cambios <i class="bi bi-arrow-return-left"></i></button>
