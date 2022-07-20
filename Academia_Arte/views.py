@@ -16,7 +16,6 @@ from django.contrib import messages
 
 # Create your views here.
 
-
 # En la pantalla de inicio, Carga del modelo Noticias todas las noticias, y las devuelve en la vista de Inicio.
 #Tambien se creo la carga de imagen del usuario Logueado
 def VInicio(request):
@@ -58,7 +57,7 @@ def VRegister(request):
         if form.is_valid():
             form.save() # guardamos el usuario
             user = User.objects.get(username=form.cleaned_data["username"])
-            avatar = Avatar(usuario=user, imagen="images/images/generic_user.png")
+            avatar = Avatar(usuario=user, imagen="images/generic_user.png")
             avatar.save()
 
             return redirect("login")
@@ -66,6 +65,7 @@ def VRegister(request):
         return render(request, "Academia_Arte/register.html",{"form":form})
 
     form = UserCreationForm()
+
     return render(request, "Academia_Arte/register.html",{"form":form})
 
 def VLogout(request):
@@ -206,6 +206,7 @@ def VNoticias (request):
 def VCursos_lista (request):
     render(request, "Academia_Arte/curso_list.html")
 
+
 class CursoList(ListView):
     
     model = Curso
@@ -252,6 +253,7 @@ class CursoDelete(DeleteView):
     model = Curso
     success_url = "/cursos"
     
+
 def VPintaManos(request):
 
     return render(request, "Academia_Arte/pinta_manos.html")
@@ -280,6 +282,7 @@ def VCrearNoticia(request):
 
     return render(request, "Academia_Arte/crear_noticia.html",{})
 
+
 class NoticiasList(ListView):
     model = Noticias
     template_name = "Academia_Arte/lista_noticias.html"
@@ -287,6 +290,7 @@ class NoticiasList(ListView):
 class NoticiaDetalle(DetailView):
     model = Noticias
     template_name = "Academia_Arte/noticia_detalle.html"
+
 
 def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
@@ -296,17 +300,15 @@ def VEliminarNoticia(request,id):
 @login_required
 def VInscripcionCurso(request):
 
-    #if request.user.is_authenticated:
-       # usuario = User.objects.filter(id=id)
-        #if form.is_valid():
-            #pass
-   #else:
-        #return redirect('login')
+    cursos = Curso.objects.all()
+
     form = InscripcionFormulario(request.POST or None)
     if request.method == "POST":
         form = InscripcionFormulario(request.POST)
+
         
-    return render(request,'Academia_Arte/inscripcion_curso.html',{"form":form})
+        
+    return render(request,'Academia_Arte/inscripcion_curso.html',{"form":form,"cursos":cursos})
 
 def VEditarNoticia(request, id):
     noticia = Noticias.objects.get(id=id)

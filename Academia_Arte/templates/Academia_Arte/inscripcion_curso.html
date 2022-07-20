@@ -7,7 +7,7 @@
 <section class="bg-light py-5">
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
-            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
             <h2 class="fw-bolder">Inscripcion a cursos</h2>
         </div>
         <div class="row gx-5 justify-content-center">
@@ -17,54 +17,55 @@
 
                     <!-- Name input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="nombre_contacto" id="name" type="text"
+                        <input class="form-control" name="nombre_estudiante" type="text"
                             placeholder="Escriba su nombre..." required>
-                        <label for="name">Nombre de usuario</label>
+                        <label for="name">Nombre</label>
                     </div>
+
+                    <div class="form-floating mb-3">
+                        <input class="form-control" name="apellido_estudiante" id="name" type="text"
+                            placeholder="Escriba su apellido..." required>
+                        <label for="name">Apellido</label>
+                    </div>
+
 
                     <!-- Email address input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="email_contacto" id="email" type="email"
+                        <input class="form-control" name="email_estudiante" type="email"
                             placeholder="nombre@ejemplo.com">
                         <label for="email">Correo electronico</label>
                         <div class="invalid-feedback" required>Debe indicar un eMail.</div>
                         <div class="invalid-feedback">El email no es valido.</div>
                     </div>
 
-                    <!-- Phone number input-->
+                    <!-- DNI number input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="tel_contacto" id="phone" type="tel" placeholder="095 123 456"
+                        <input class="form-control" name="dni_estudiante" type="tel" placeholder="1234567"
                             required>
-                        <label for="phone">Telefono</label>
-                        <div class="invalid-feedback">Debe agregar un telefono.</div>
+                        <label for="phone">DNI</label>
+                        <div class="invalid-feedback">Debe agregar su DNI.</div>
                     </div>
 
-                    <!-- Asunto input-->
+                    <!-- Curso input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" name="asunto_contacto" id="affair" type="text"
-                            placeholder="Ingrese un asunto" required>
-                        <label for="phone">Asunto</label>
-                        <div class="invalid-feedback">Debe agregar un asunto.</div>
+                        <select class="form-control" name="curso_estudiante" type="text"
+                            value="Curso" required>
+                            <option value="Seleccione un curso...">Seleccione un curso...</option>
+                        {% for curso in cursos %}
+                            <option>{{curso.nombre_curso}}</option>
+                        {% endfor %}
+                    </select>
                     </div>
 
-                    <!-- Message input-->
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" name="mensaje_contacto" id="message" type="text"
-                            placeholder="Escriba su mensaje aqui..." style="height: 10rem" required></textarea>
-                        <label for="message">Mensaje</label>
-                        <div class="invalid-feedback">Debe ingresar un mensaje.
-                        </div>
-                    </div>
 
                     <!-- Submit Button-->
                     <div class="d-grid">
-                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Enviar</button>
+                        <button class="btn btn-primary btn-lg" type="submit">Inscribirme</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
-{{form.as_p}}
 
 {% endblock %}

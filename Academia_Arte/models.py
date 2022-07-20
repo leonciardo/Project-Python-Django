@@ -49,6 +49,7 @@ class Profesores(models.Model):
         max_length=2000, blank=True, null=True)
 
 class Estudiante(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     nombre_estudiante = models.CharField(max_length=40)
     apellido_estudiante = models.CharField(max_length=30)
     email_estudiante =  models.EmailField()

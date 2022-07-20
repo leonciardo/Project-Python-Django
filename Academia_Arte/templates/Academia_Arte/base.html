@@ -54,11 +54,7 @@
     <title>PintaManos</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{% static 'css/iconos.css' %}">
-
-
     <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <style>
@@ -154,6 +150,7 @@
                             <img src="{{user.avatar.imagen.url}}" alt="" width="32" height="32" class="rounded-circle">
                             Hola, {{user}}
                         </a>
+
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="{% url 'perfil' %}">Mi perfil</a></li>
 
@@ -162,7 +159,7 @@
                             <li><a class="dropdown-item" href="{% url 'lista_noticias' %}">Editar Noticias</a></li>
                             <li><a class="dropdown-item" href="{% url 'mensajes_contacto' %}">Mensajes</a></li>
 
-                            {% endif %}
+                    {% endif %}
                             
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a></li>
