@@ -56,6 +56,7 @@ asi como la opcion dentro de cursos de inscribirse a uno de ellos.
 		-Toda la seccion de "Cursos"
 		-CRUD completo para "Cursos" con usuario Staff
 		-CBV de "Cursos"
+                -Testeo con test.py
 
 	.Leonardo Fiorentino
 		-Login, logout, registro, edicion de perfil
