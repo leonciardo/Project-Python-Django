@@ -5,11 +5,11 @@
 
 <br>
 <form method="post">{% csrf_token %}
-    <center>
+    <div style="text-align:center;">
     <h6>¿Estás seguro que quieres eliminar el crusro "{{ object.nombre_curso }}"</h6>
         <input type="submit" value="Eliminar" class="btn btn-primary">
         <a href="{% url 'lista_cursos' %}" class="btn btn-outline-primary">Regresar</a>
-    </center>
+    </div>
     </form>
 
 {% endblock %}
