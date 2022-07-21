@@ -45,6 +45,29 @@ Podra acceder a la informacion de los alumnos inscriptos donde veran informacion
 Podran encontrar dentro del menu de usuarios, la posibilidad de editar sus datos de perfil,
 asi como la opcion dentro de cursos de inscribirse a uno de ellos.
 
+-Desarrollo.
+	.Leonardo Mesaglio
+		-Toda la seccion de Noticias.
+		-Toda la seccion de "Acerca de"
+		-CBV de "Noticias"
+		-Todo "Inicio"		
+
+	.Federico Copertini
+		-Toda la seccion de "Cursos"
+		-CRUD completo para "Cursos" con usuario Staff
+		-CBV de "Cursos"
+
+	.Leonardo Fiorentino
+		-Login, logout, registro, edicion de perfil
+		-Toda la seccion de Profesores.
+		-Creacion y edicion de noticias, desde perfil Staff.
+		-Seccion de "Contacto", y list de Mensajes en perfil Staff.
+		-Formulario inscripcion a cursos.
+		
+	Enfoque estetico y detalles visuales.
+		-Botones, imagenes, diseños aplicados de Bootstrap, estilos, enlaces externos.
+			.Leonardo Mesaglio, Federico Copertini, Leonardo Fiorentino
+
 
 - Los creadores.
 .Leonardo Mesaglio

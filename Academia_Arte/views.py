@@ -301,14 +301,22 @@ def VEliminarNoticia(request,id):
 def VInscripcionCurso(request):
 
     cursos = Curso.objects.all()
+    form_inscripcion = InscripcionFormulario(request.POST)
 
-    form = InscripcionFormulario(request.POST or None)
-    if request.method == "POST":
-        form = InscripcionFormulario(request.POST)
+    if request.method == 'POST':
+        inscripcion_formulario = request.POST
 
+        inscripcion = Estudiante(
+            nombre_estudiante=inscripcion_formulario["nombre_estudiante"],
+            apellido_estudiante=inscripcion_formulario["apellido_estudiante"],
+            email_estudiante=inscripcion_formulario["email_estudiante"],
+            dni_estudiante=inscripcion_formulario["dni_estudiante"],
+            curso_estudiante=inscripcion_formulario["curso_estudiante"],
+        )
+        inscripcion.save()
+        return redirect("inicio")
         
-        
-    return render(request,'Academia_Arte/inscripcion_curso.html',{"form":form,"cursos":cursos})
+    return render(request,'Academia_Arte/inscripcion_curso.html',{"form_inscripcion":form_inscripcion,"cursos":cursos})
 
 def VEditarNoticia(request, id):
     noticia = Noticias.objects.get(id=id)
