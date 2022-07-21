@@ -153,7 +153,7 @@ def VAlumnos (request):
 
 #creando vista CRUD ALUMNOS/ESTUDIANTES
 
-class EstudiantesList(ListView):
+class EstudiantesList(ListView,LoginRequiredMixin):
 
     model = Estudiante
     template_name = "Academia_Arte/estudiantes_list.html"

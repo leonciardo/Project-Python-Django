@@ -27,7 +27,6 @@ urlpatterns = [
     path('pinta_manos', VPintaManos, name='pinta_manos'),
     path('contacto', VContacto, name='contacto'),
     path('cursos', VCursos, name='cursos'),
-    path('alumnos', VAlumnos, name='alumnos'),
     path('profesores', VProfesores, name='profesores'),
     path('acerca_de', VAcerca_de, name='acerca_de'),
     path('noticias', VNoticias, name ='noticias'),
