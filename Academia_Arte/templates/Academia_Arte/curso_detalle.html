@@ -17,7 +17,7 @@
                 <h1 class="display-5 fw-bolder">Curso de {{curso.nombre_curso}}</h1>
                 <h3 class="display-8">Cursada a cargo de {{curso.profesor_curso}}</h3>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">$ precio anterior </span>
+                    <span class="text-decoration-line-through">{{ curso.precio_curso|add:"2000" }}</span>
                     <span>${{curso.precio_curso}}</span>
                 </div>
                 <p class="lead">{{curso.descripcion_detalle_curso}}</p>
