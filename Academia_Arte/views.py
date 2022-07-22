@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login, logout, authenticate
+from django.urls import reverse_lazy
 from .forms import *
 from .models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +16,14 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 
 # Create your views here.
+
+class StaffRequiredMixin(object):
+
+    def dispatch(self,request,*args,**kwargs):
+        if not request.user.is_staff:
+            return redirect(reverse_lazy('login'))
+        return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
+
 
 # En la pantalla de inicio, Carga del modelo Noticias todas las noticias, y las devuelve en la vista de Inicio.
 #Tambien se creo la carga de imagen del usuario Logueado
@@ -131,29 +140,29 @@ def VCambiarContra(request):
 
 #Seccion Estudiantes
 
-class EstudiantesList(ListView,LoginRequiredMixin):
+class EstudiantesList(StaffRequiredMixin,ListView):
 
     model = Estudiante
     template_name = "Academia_Arte/estudiantes_list.html"
 
-class EstudianteDetail(DetailView):
+class EstudianteDetail(StaffRequiredMixin,DetailView):
 
     model = Estudiante
     template_name = "Academia_Arte/estudiante_detail.html"
 
-class EstudianteCreate(CreateView):
+class EstudianteCreate(StaffRequiredMixin,CreateView):
 
     model = Estudiante
     success_url = "/estudiantes_list"
     fields = ["nombre", "apellido", "email"]
 
-class EstudianteUpdate(UpdateView):
+class EstudianteUpdate(StaffRequiredMixin,UpdateView):
 
     model = Estudiante
     success_url = "/estudiantes_list" # atenciooooooooon!!!! a la primer /
     fields = ["nombre_estudiante", "apellido_estudiante", "email_estudiante", "dni_estudiante", "curso_estudiante"]
 
-class EstudianteDelete(DeleteView):
+class EstudianteDelete(StaffRequiredMixin,DeleteView):
 
     model = Estudiante
     success_url = "/estudiantes_list" # atenciooooooooon!!!! a la primer /
@@ -188,12 +197,12 @@ def VCursos (request):
 def VCursos_lista (request):
     render(request, "Academia_Arte/curso_list.html")
 
-class CursoList(ListView):
+class CursoList(StaffRequiredMixin,ListView):
     
     model = Curso
     Template_name = "Academia_Arte/cursos_list.html"
     
-class CursoDetalle(DetailView):
+class CursoDetalle(StaffRequiredMixin,DetailView):
     
     model = Curso
     template_name = "Academia_Arte/curso_detalle.html"
@@ -203,7 +212,7 @@ class CursoDetalle(DetailView):
         context['todos_cursos'] = Curso.objects.all()
         return context
     
-class CursoCreacion(CreateView):
+class CursoCreacion(StaffRequiredMixin,CreateView):
     
     model = Curso
     success_url = "/cursos"
@@ -216,7 +225,7 @@ class CursoCreacion(CreateView):
         'imagen_curso'
     ]
 
-class CursoUpdate(UpdateView):
+class CursoUpdate(StaffRequiredMixin,UpdateView):
     
     model = Curso
     success_url = "/cursos"
@@ -284,11 +293,11 @@ def VCrearNoticia(request):
 
     return render(request, "Academia_Arte/crear_noticia.html",{})
 
-class NoticiasList(ListView):
+class NoticiasList(StaffRequiredMixin,ListView):
     model = Noticias
     template_name = "Academia_Arte/lista_noticias.html"
 
-class NoticiaDetalle(DetailView):
+class NoticiaDetalle(StaffRequiredMixin,DetailView):
     model = Noticias
     template_name = "Academia_Arte/noticia_detalle.html"
 
@@ -323,15 +332,15 @@ def VNoticias (request):
 
 
 #Seccion CONTACTO
-class ContactoList(ListView):
+class ContactoList(StaffRequiredMixin,ListView):
     model = Contacto
     template_name = "Academia_Arte/mensajes_contacto.html"
 
-class ContactoDelete(DeleteView):
+class ContactoDelete(StaffRequiredMixin,DeleteView):
     model = Contacto
     success_url = "/mensajes_contacto"
 
-class ContactoDetail(DetailView):
+class ContactoDetail(StaffRequiredMixin,DetailView):
     model = Contacto
     template_name = "Academia_Arte/mensaje_contacto_detalle.html"
 
