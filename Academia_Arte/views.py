@@ -127,31 +127,9 @@ def VCambiarContra(request):
     return render(request, "Academia_Arte/cambiar_contra.html",{"form":form})
 
 
-def VContacto(request):
-
-    if request.method == 'POST':
-
-        contacto_formulario = request.POST
-
-        msj = Contacto(
-            nombre_contacto=contacto_formulario["nombre_contacto"],
-            email_contacto=contacto_formulario["email_contacto"],
-            tel_contacto=contacto_formulario["tel_contacto"],
-            asunto_contacto=contacto_formulario["asunto_contacto"],
-            mensaje_contacto=contacto_formulario["mensaje_contacto"],
-        )
-        msj.save()
-        return redirect("inicio")
-
-    return render(request, "Academia_Arte/contacto.html")
-
-@staff_member_required
-def VAlumnos (request):
-
-    return render (request, "Academia_Arte/alumnos.html")
 
 
-#creando vista CRUD ALUMNOS/ESTUDIANTES
+#Seccion Estudiantes
 
 class EstudiantesList(ListView,LoginRequiredMixin):
 
@@ -180,32 +158,35 @@ class EstudianteDelete(DeleteView):
     model = Estudiante
     success_url = "/estudiantes_list" # atenciooooooooon!!!! a la primer /
 
+@staff_member_required
+def VAlumnos (request):
 
+    return render (request, "Academia_Arte/alumnos.html")
+
+
+#Seccion Profesores
 def VProfesores (request):
 
     profe = Profesores.objects.all()
 
     return render(request, "Academia_Arte/profesores.html",{"profe":profe})
 
-def VCursos (request):
+class ProfesorDetalle(DetailView):
+    model = Profesores
+    template_name = "Academia_Arte/profesor_detalle.html"
 
+
+
+
+#Seccion Cursos
+
+def VCursos (request):
     cursos = Curso.objects.all()
 
     return render (request, "Academia_Arte/cursos.html", {"cursos":cursos})
 
-def VAcerca_de (request):
-    staff = Staff.objects.all()
-
-    return render(request, "Academia_Arte/acerca_de.html", {"staff":staff})  
-
-def VNoticias (request):
-    noticias = Noticias.objects.all()
-
-    return render (request, "Academia_Arte/noticias.html",{"noticias":noticias})
-
 def VCursos_lista (request):
     render(request, "Academia_Arte/curso_list.html")
-
 
 class CursoList(ListView):
     
@@ -253,11 +234,30 @@ class CursoDelete(DeleteView):
     model = Curso
     success_url = "/cursos"
     
+@login_required
+def VInscripcionCurso(request):
 
-def VPintaManos(request):
+    cursos = Curso.objects.all()
+    form_inscripcion = InscripcionFormulario(request.POST)
 
-    return render(request, "Academia_Arte/pinta_manos.html")
+    if request.method == 'POST':
+        inscripcion_formulario = request.POST
 
+        inscripcion = Estudiante(
+            nombre_estudiante=inscripcion_formulario["nombre_estudiante"],
+            apellido_estudiante=inscripcion_formulario["apellido_estudiante"],
+            email_estudiante=inscripcion_formulario["email_estudiante"],
+            dni_estudiante=inscripcion_formulario["dni_estudiante"],
+            curso_estudiante=inscripcion_formulario["curso_estudiante"],
+        )
+        inscripcion.save()
+        return redirect("inicio")
+        
+    return render(request,'Academia_Arte/inscripcion_curso.html',{"form_inscripcion":form_inscripcion,"cursos":cursos})
+
+
+
+#Seccion Noticias
 @staff_member_required
 def VCrearNoticia(request):
 
@@ -282,7 +282,6 @@ def VCrearNoticia(request):
 
     return render(request, "Academia_Arte/crear_noticia.html",{})
 
-
 class NoticiasList(ListView):
     model = Noticias
     template_name = "Academia_Arte/lista_noticias.html"
@@ -291,32 +290,10 @@ class NoticiaDetalle(DetailView):
     model = Noticias
     template_name = "Academia_Arte/noticia_detalle.html"
 
-
 def VEliminarNoticia(request,id):
     noticia = Noticias.objects.get(id=id)
     noticia.delete()
     return redirect("inicio")
-
-@login_required
-def VInscripcionCurso(request):
-
-    cursos = Curso.objects.all()
-    form_inscripcion = InscripcionFormulario(request.POST)
-
-    if request.method == 'POST':
-        inscripcion_formulario = request.POST
-
-        inscripcion = Estudiante(
-            nombre_estudiante=inscripcion_formulario["nombre_estudiante"],
-            apellido_estudiante=inscripcion_formulario["apellido_estudiante"],
-            email_estudiante=inscripcion_formulario["email_estudiante"],
-            dni_estudiante=inscripcion_formulario["dni_estudiante"],
-            curso_estudiante=inscripcion_formulario["curso_estudiante"],
-        )
-        inscripcion.save()
-        return redirect("inicio")
-        
-    return render(request,'Academia_Arte/inscripcion_curso.html',{"form_inscripcion":form_inscripcion,"cursos":cursos})
 
 def VEditarNoticia(request, id):
     noticia = Noticias.objects.get(id=id)
@@ -336,11 +313,14 @@ def VEditarNoticia(request, id):
 
     return render(request, "Academia_Arte/editar_noticia.html",{"noticia":noticia})
 
-class ProfesorDetalle(DetailView):
-    model = Profesores
-    template_name = "Academia_Arte/profesor_detalle.html"
+def VNoticias (request):
+    noticias = Noticias.objects.all()
 
-#Class CONTACTO
+    return render (request, "Academia_Arte/noticias.html",{"noticias":noticias})
+
+
+
+#Seccion CONTACTO
 class ContactoList(ListView):
     model = Contacto
     template_name = "Academia_Arte/mensajes_contacto.html"
@@ -352,3 +332,32 @@ class ContactoDelete(DeleteView):
 class ContactoDetail(DetailView):
     model = Contacto
     template_name = "Academia_Arte/mensaje_contacto_detalle.html"
+
+def VContacto(request):
+
+    if request.method == 'POST':
+
+        contacto_formulario = request.POST
+
+        msj = Contacto(
+            nombre_contacto=contacto_formulario["nombre_contacto"],
+            email_contacto=contacto_formulario["email_contacto"],
+            tel_contacto=contacto_formulario["tel_contacto"],
+            asunto_contacto=contacto_formulario["asunto_contacto"],
+            mensaje_contacto=contacto_formulario["mensaje_contacto"],
+        )
+        msj.save()
+        return redirect("inicio")
+
+    return render(request, "Academia_Arte/contacto.html")
+
+
+#Varios
+def VPintaManos(request):
+
+    return render(request, "Academia_Arte/pinta_manos.html")
+
+def VAcerca_de (request):
+    staff = Staff.objects.all()
+
+    return render(request, "Academia_Arte/acerca_de.html", {"staff":staff})  
