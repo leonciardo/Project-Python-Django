@@ -50,7 +50,8 @@ asi como la opcion dentro de cursos de inscribirse a uno de ellos.
 		-Toda la seccion de Noticias.
 		-Toda la seccion de "Acerca de"
 		-CBV de "Noticias"
-		-Todo "Inicio"		
+		-Todo "Inicio"	
+		-CRUD alumnos
 
 	.Federico Copertini
 		-Toda la seccion de "Cursos"
