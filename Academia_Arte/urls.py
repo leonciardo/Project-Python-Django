@@ -26,6 +26,7 @@ urlpatterns = [
     path('cambiar_contra', VCambiarContra, name='cambiar_contra'),
     path('pinta_manos', VPintaManos, name='pinta_manos'),
     path('contacto', VContacto, name='contacto'),
+    path('confirm_contacto', Vconfirm_contacto, name='confirm_contacto'),
     path('cursos', VCursos, name='cursos'),
     path('profesores', VProfesores, name='profesores'),
     path('acerca_de', VAcerca_de, name='acerca_de'),
@@ -37,6 +38,7 @@ urlpatterns = [
     path('curso/list', CursoList.as_view(), name ='lista_cursos'),
     path(r'curso/^editar/(?P<pk>\d+)$', CursoUpdate.as_view(), name ='editar_curso'),
     path(r'curso/^eliminar(?P<pk>\d+)$', CursoDelete.as_view(), name ='eliminar_curso'),
+    path('confirm_registro', Vconfirm_registro, name= 'confirm_registro'),
 
     #Noticias CRUD
     path('crear_noticia', VCrearNoticia, name='crear_noticia'),

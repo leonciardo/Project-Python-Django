@@ -251,11 +251,13 @@ def VInscripcionCurso(request):
             curso_estudiante=inscripcion_formulario["curso_estudiante"],
         )
         inscripcion.save()
-        return redirect("inicio")
+        return redirect("confirm_registro")
         
     return render(request,'Academia_Arte/inscripcion_curso.html',{"form_inscripcion":form_inscripcion,"cursos":cursos})
 
-
+def Vconfirm_registro(request):
+    
+    return render (request, "Academia_Arte\confirmacion_registro_cursos.html")
 
 #Seccion Noticias
 @staff_member_required
@@ -347,9 +349,12 @@ def VContacto(request):
             mensaje_contacto=contacto_formulario["mensaje_contacto"],
         )
         msj.save()
-        return redirect("inicio")
+        return redirect("confirm_contacto")
 
     return render(request, "Academia_Arte/contacto.html")
+
+def Vconfirm_contacto(request):
+    return render (request, "Academia_Arte/confirmacion_mensaje.html")
 
 
 #Varios
