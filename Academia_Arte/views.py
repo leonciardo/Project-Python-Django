@@ -202,7 +202,7 @@ class CursoList(StaffRequiredMixin,ListView):
     model = Curso
     Template_name = "Academia_Arte/cursos_list.html"
     
-class CursoDetalle(StaffRequiredMixin,DetailView):
+class CursoDetalle(DetailView):
     
     model = Curso
     template_name = "Academia_Arte/curso_detalle.html"
@@ -297,7 +297,7 @@ class NoticiasList(StaffRequiredMixin,ListView):
     model = Noticias
     template_name = "Academia_Arte/lista_noticias.html"
 
-class NoticiaDetalle(StaffRequiredMixin,DetailView):
+class NoticiaDetalle(DetailView):
     model = Noticias
     template_name = "Academia_Arte/noticia_detalle.html"
 
