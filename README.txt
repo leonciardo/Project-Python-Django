@@ -45,6 +45,8 @@ Podra acceder a la informacion de los alumnos inscriptos donde veran informacion
 Podran encontrar dentro del menu de usuarios, la posibilidad de editar sus datos de perfil,
 asi como la opcion dentro de cursos de inscribirse a uno de ellos.
 
+En este link https://youtu.be/nznWR_gvJdo se encuentra un video donde se muestran las funcionalidades de la página.
+
 -Desarrollo.
 	.Leonardo Mesaglio
 		-Toda la seccion de Noticias.
